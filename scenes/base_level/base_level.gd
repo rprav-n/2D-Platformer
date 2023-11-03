@@ -6,6 +6,7 @@ var player_scene: PackedScene = preload("res://scenes/player/player.tscn")
 var spawn_position: Vector2 = Vector2.ZERO
 
 @onready var player: Player = $Player
+
 var current_player: Player = null
 
 func _ready():
@@ -28,3 +29,4 @@ func create_player():
 func _on_player_died():
 	current_player.queue_free()
 	create_player()
+
