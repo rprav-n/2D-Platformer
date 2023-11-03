@@ -2,6 +2,8 @@ class_name Player
 
 extends CharacterBody2D
 
+signal died
+
 const GRAVITY: int = 1100
 const HORIZONTAL_SPEED: int = 120
 const HORIZONTAL_ACCELERATION: int = 1400
@@ -71,3 +73,7 @@ func update_animation(input_axis: float):
 	
 	if !is_on_floor():
 		animated_sprite_2d.play("jump")
+
+
+func _on_hazard_area_area_entered(_area: Area2D):
+	emit_signal("died")
