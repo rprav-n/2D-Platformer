@@ -9,6 +9,11 @@ const FRICTION: int = 1000
 const JUMP_SPEED: int = 360
 const JUMP_TERMINATION_MULTIPLIER: float = 2.5
 
+var can_double_jump: bool = false
+
+@onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
+@onready var coyote_timer: Timer = $CoyoteTimer
+
 func _ready():
 	pass
 
@@ -21,7 +26,17 @@ func _physics_process(delta: float):
 	handle_movement(input_axis, delta)
 	handle_jump()
 	
+	var was_on_floor: bool = is_on_floor()
 	move_and_slide()
+	
+	if was_on_floor && !is_on_floor():
+		coyote_timer.start()
+	
+	if is_on_floor():
+		can_double_jump = true
+	
+	update_animation(input_axis)
+	GameEvent.player_position.emit(global_position)
 
 
 func handle_movement(input_axis: float, delta: float):
@@ -33,8 +48,11 @@ func handle_movement(input_axis: float, delta: float):
 
 
 func handle_jump():
-	if Input.is_action_just_pressed("jump") && is_on_floor():
+	if Input.is_action_just_pressed("jump") && (is_on_floor() || !coyote_timer.is_stopped() || can_double_jump):
 		velocity.y = JUMP_SPEED * -1
+		if !is_on_floor() && coyote_timer.is_stopped():
+			can_double_jump = false
+		coyote_timer.stop()
 
 
 func apply_gravity(delta: float):
@@ -42,3 +60,14 @@ func apply_gravity(delta: float):
 		velocity.y += GRAVITY * JUMP_TERMINATION_MULTIPLIER * delta
 	else:
 		velocity.y += GRAVITY * delta
+
+
+func update_animation(input_axis: float):
+	if input_axis != 0:
+		animated_sprite_2d.play("run")
+		animated_sprite_2d.flip_h = input_axis > 0
+	else:
+		animated_sprite_2d.play("idle")
+	
+	if !is_on_floor():
+		animated_sprite_2d.play("jump")
