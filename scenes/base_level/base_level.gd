@@ -10,6 +10,7 @@ var spawn_position: Vector2 = Vector2.ZERO
 var current_player: Player = null
 
 func _ready():
+	RenderingServer.set_default_clear_color(Color.LIGHT_BLUE)
 	spawn_position = player.global_position
 	register_player(player)
 
