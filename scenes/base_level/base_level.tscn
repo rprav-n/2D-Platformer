@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://d5ajpv3xy844"]
+[gd_scene load_steps=10 format=3 uid="uid://d5ajpv3xy844"]
 
 [ext_resource type="PackedScene" uid="uid://iykphy31hsq4" path="res://scenes/camera/game_camera.tscn" id="1_1is6j"]
 [ext_resource type="Script" path="res://scenes/base_level/base_level.gd" id="1_8x3dt"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://7k5ijkik1s61" path="res://scenes/tile_map/tile_map.tscn" id="2_v5qoc"]
 [ext_resource type="PackedScene" uid="uid://bstpklwoknbgg" path="res://scenes/player/player.tscn" id="2_vdke6"]
 [ext_resource type="PackedScene" uid="uid://dv55do2clt8ns" path="res://scenes/flag/flag.tscn" id="4_mmkj8"]
+[ext_resource type="PackedScene" uid="uid://q0ou75dniyea" path="res://scenes/cloud/cloud.tscn" id="4_pitpk"]
 [ext_resource type="TileSet" uid="uid://c4tl3h82hpda3" path="res://resources/decorative_tileset.tres" id="5_y0me1"]
 [ext_resource type="TileSet" uid="uid://cqgeowpcgu04j" path="res://resources/tileset.tres" id="5_yqn8x"]
 
@@ -15,6 +16,8 @@ script = ExtResource("1_8x3dt")
 [node name="LevelUI" parent="." instance=ExtResource("2_mfxaq")]
 
 [node name="GameCamera" parent="." instance=ExtResource("1_1is6j")]
+
+[node name="Cloud" parent="GameCamera" instance=ExtResource("4_pitpk")]
 
 [node name="TileMap" parent="." instance=ExtResource("2_v5qoc")]
 tile_set = ExtResource("5_yqn8x")
