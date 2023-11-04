@@ -20,6 +20,7 @@ func _ready():
 	
 	total_coins = get_tree().get_nodes_in_group("coin").size()
 	
+	GameEvent.update_coin_count_ui.emit(total_coins, collected_coins)
 	GameEvent.player_coin_collect.connect(_on_player_coin_collect)
 
 
@@ -37,6 +38,7 @@ func create_player():
 
 func _on_player_coin_collect():
 	collected_coins += 1
+	GameEvent.update_coin_count_ui.emit(total_coins, collected_coins)
 
 
 func _on_player_died():
