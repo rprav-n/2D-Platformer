@@ -1,0 +1,75 @@
+[gd_scene load_steps=7 format=3 uid="uid://ddjfffh1osb32"]
+
+[ext_resource type="Texture2D" uid="uid://d08ydtgk3qbuv" path="res://assets/enemy/character_0015.png" id="1_cv26f"]
+
+[sub_resource type="Animation" id="Animation_1nonu"]
+resource_name = "death"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("GPUParticles2D:emitting")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_arawe"]
+_data = {
+"death": SubResource("Animation_1nonu")
+}
+
+[sub_resource type="Curve" id="Curve_26uxl"]
+max_value = 1.25
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.15, 1.25), 0.0, 0.0, 0, 0, Vector2(0.4, 1), -0.193859, -0.193859, 0, 0, Vector2(1, 0), -1.53472, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_7qsrx"]
+curve = SubResource("Curve_26uxl")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_mvnfk"]
+particle_flag_disable_z = true
+direction = Vector3(0, -1, 0)
+spread = 30.0
+gravity = Vector3(0, 1000, 0)
+initial_velocity_min = 300.0
+initial_velocity_max = 300.0
+angular_velocity_min = 200.0
+angular_velocity_max = 360.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+scale_curve = SubResource("CurveTexture_7qsrx")
+
+[node name="EnemyDeath" type="Node2D"]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "death"
+libraries = {
+"": SubResource("AnimationLibrary_arawe")
+}
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+position = Vector2(0, -12)
+emitting = false
+amount = 1
+process_material = SubResource("ParticleProcessMaterial_mvnfk")
+texture = ExtResource("1_cv26f")
+lifetime = 0.5
+one_shot = true

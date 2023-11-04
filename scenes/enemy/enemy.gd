@@ -9,6 +9,7 @@ const GRAVITY: int = 600
 var direction: Vector2 = Vector2.RIGHT
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 
+var enemy_death_scene: PackedScene = preload("res://scenes/enemy_death/enemy_death.tscn")
 
 func _physics_process(delta: float):
 	apply_gravity(delta)
@@ -34,4 +35,13 @@ func _on_goal_detector_area_entered(_area: Area2D):
 
 
 func _on_hurtbox_area_area_entered(_area: Area2D):
+	call_deferred("kill")
+
+
+func kill():
+	var enemy_death: Node2D = enemy_death_scene.instantiate() as Node2D
+	get_parent().add_child(enemy_death)
+	enemy_death.global_position = global_position
+	if velocity.x > 0:
+		enemy_death.scale.x = -1
 	queue_free()
