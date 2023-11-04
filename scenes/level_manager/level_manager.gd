@@ -4,9 +4,6 @@ extends Node
 
 var current_level_index: int = 0
 
-func _ready():
-	change_level(current_level_index)
-
 
 func change_level(level_index: int):
 	current_level_index = level_index

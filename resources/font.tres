@@ -4,3 +4,4 @@
 
 [resource]
 base_font = ExtResource("1_lhu7w")
+spacing_top = -4
