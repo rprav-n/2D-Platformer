@@ -26,3 +26,5 @@ layer_0/tile_data = PackedInt32Array()
 [node name="Hazards" type="Node2D" parent="."]
 
 [node name="Player" parent="." instance=ExtResource("2_vdke6")]
+
+[connection signal="player_won" from="Flag" to="." method="_on_flag_player_won"]

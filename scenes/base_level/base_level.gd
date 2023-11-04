@@ -45,3 +45,6 @@ func _on_player_died():
 	current_player.queue_free()
 	create_player()
 
+
+func _on_flag_player_won():
+	LevelManager.increment_level()

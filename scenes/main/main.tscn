@@ -1,10 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://c2g4hjko38r2v"]
+[gd_scene load_steps=2 format=3 uid="uid://c2g4hjko38r2v"]
 
 [ext_resource type="Script" path="res://scenes/main/main.gd" id="1_xbjvy"]
-[ext_resource type="PackedScene" uid="uid://dvodbhbg37rtl" path="res://scenes/levels/level_001.tscn" id="2_ja4qd"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_xbjvy")
 background_color = Color(0.87451, 0.964706, 0.960784, 1)
-
-[node name="Level001" parent="." instance=ExtResource("2_ja4qd")]
