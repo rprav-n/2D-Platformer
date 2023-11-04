@@ -3,6 +3,8 @@ class_name BaseLevel
 extends Node
 
 
+@export var level_comlpete_scene: PackedScene
+
 var player_scene: PackedScene = preload("res://scenes/player/player.tscn")
 var spawn_position: Vector2 = Vector2.ZERO
 
@@ -47,4 +49,6 @@ func _on_player_died():
 
 
 func _on_flag_player_won():
-	LevelManager.increment_level()
+	current_player.queue_free()
+	var level_complete: LevelCompleteUI = level_comlpete_scene.instantiate() as LevelCompleteUI
+	add_child(level_complete)
