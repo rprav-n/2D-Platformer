@@ -71,5 +71,5 @@ emitting = false
 amount = 1
 process_material = SubResource("ParticleProcessMaterial_mvnfk")
 texture = ExtResource("1_cv26f")
-lifetime = 0.5
+lifetime = 0.6
 one_shot = true

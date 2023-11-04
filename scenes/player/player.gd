@@ -31,6 +31,7 @@ var is_dying: bool = false
 @onready var coyote_timer: Timer = $CoyoteTimer
 @onready var dash_area_collision_shape_2d: CollisionShape2D = $DashArea/CollisionShape2D
 @onready var hazard_area: Area2D = $HazardArea
+@onready var dash_particles: GPUParticles2D = $DashParticles
 
 
 func _ready():
@@ -57,6 +58,7 @@ func change_state(new_state: State):
 
 func process_normal(delta: float):
 	if is_new_state:
+		dash_particles.emitting = false
 		hazard_area.collision_mask = default_hazard_mask
 	var input_axis: float = Input.get_axis("move_left", "move_right")
 	
@@ -82,7 +84,8 @@ func process_normal(delta: float):
 
 
 func process_dash(delta: float):
-	if is_new_state:		
+	if is_new_state:
+		dash_particles.emitting = true
 		hazard_area.collision_mask = dash_hazard_mask
 		dash_area_collision_shape_2d.disabled = false
 		animated_sprite_2d.play("jump")
