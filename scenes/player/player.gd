@@ -4,24 +4,43 @@ extends CharacterBody2D
 
 signal died
 
+enum State { NORMAL, DASHING }
+
 const GRAVITY: int = 1100
 const HORIZONTAL_SPEED: int = 120
 const HORIZONTAL_ACCELERATION: int = 1400
 const FRICTION: int = 1000
 const JUMP_SPEED: int = 360
 const JUMP_TERMINATION_MULTIPLIER: float = 2.5
+const DASH_SPEED: int = 350
+const MIN_DASH_SPEED: int = 200
 
 var can_double_jump: bool = false
+var current_state: State = State.NORMAL
+var is_new_state: bool = true
 
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var coyote_timer: Timer = $CoyoteTimer
 
-func _ready():
-	pass
-
 
 func _physics_process(delta: float):
+	match current_state:
+		State.NORMAL:
+			process_normal(delta)
+		State.DASHING:
+			process_dash(delta)
 	
+	is_new_state = false	
+	
+	GameEvent.player_position.emit(global_position)
+
+
+func change_state(new_state: State):
+	current_state = new_state
+	is_new_state = true
+
+
+func process_normal(delta: float):
 	var input_axis: float = Input.get_axis("move_left", "move_right")
 	
 	apply_gravity(delta)
@@ -37,8 +56,22 @@ func _physics_process(delta: float):
 	if is_on_floor():
 		can_double_jump = true
 	
+	if Input.is_action_just_pressed("dash"):
+		call_deferred("change_state", State.DASHING)
+	
 	update_animation(input_axis)
-	GameEvent.player_position.emit(global_position)
+
+
+func process_dash(delta: float):
+	if is_new_state:
+		animated_sprite_2d.play("jump")
+		var direction: int = get_direction()
+		velocity = Vector2(DASH_SPEED * direction, 0)
+	move_and_slide()
+	velocity.x = move_toward(velocity.x, 0, FRICTION * delta)
+	
+	if abs(velocity.x) <= MIN_DASH_SPEED:
+		call_deferred("change_state", State.NORMAL)
 
 
 func handle_movement(input_axis: float, delta: float):
@@ -73,6 +106,10 @@ func update_animation(input_axis: float):
 	
 	if !is_on_floor():
 		animated_sprite_2d.play("jump")
+
+
+func get_direction() -> int:
+	return 1 if animated_sprite_2d.flip_h else -1
 
 
 func _on_hazard_area_area_entered(_area: Area2D):
