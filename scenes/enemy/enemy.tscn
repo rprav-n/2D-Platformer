@@ -1,8 +1,145 @@
-[gd_scene load_steps=9 format=3 uid="uid://dp46wvvkhj51a"]
+[gd_scene load_steps=13 format=3 uid="uid://dp46wvvkhj51a"]
 
 [ext_resource type="Script" path="res://scenes/enemy/enemy.gd" id="1_m2evk"]
 [ext_resource type="Texture2D" uid="uid://d08ydtgk3qbuv" path="res://assets/enemy/character_0015.png" id="1_qigxk"]
 [ext_resource type="Texture2D" uid="uid://dvmwmdx287lha" path="res://assets/enemy/character_0016.png" id="2_f1by7"]
+[ext_resource type="Texture2D" uid="uid://di6sprnbdxr7p" path="res://assets/enemy/character_0017.png" id="4_ca3nf"]
+
+[sub_resource type="Animation" id="Animation_8y1bf"]
+resource_name = "spawn"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Visuals/AnimatedSprite2D:animation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"spawn"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Visuals:scale")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(1.2, 1.2), Vector2(1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("HazardArea/CollisionShape2D:disabled")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("HurtboxArea/CollisionShape2D:disabled")
+tracks/3/interp = 2
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.7),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".:is_spawning")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_82ly1"]
+resource_name = "default"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HurtboxArea/CollisionShape2D:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HazardArea/CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Visuals/AnimatedSprite2D:animation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"run"]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:is_spawning")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Visuals/AnimatedSprite2D")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [&"run"],
+"method": &"play"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0yp8c"]
+_data = {
+"default": SubResource("Animation_82ly1"),
+"spawn": SubResource("Animation_8y1bf")
+}
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4fdqg"]
 size = Vector2(10, 7)
@@ -11,6 +148,9 @@ size = Vector2(10, 7)
 size = Vector2(10, 12)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ci2wq"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_s7toi"]
+radius = 6.0
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_raf8e"]
 animations = [{
@@ -24,14 +164,27 @@ animations = [{
 "loop": true,
 "name": &"run",
 "speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_ca3nf")
+}],
+"loop": false,
+"name": &"spawn",
+"speed": 0.0
 }]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_s7toi"]
-radius = 6.0
 
 [node name="Enemy" type="CharacterBody2D"]
 collision_layer = 16
 script = ExtResource("1_m2evk")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "spawn"
+libraries = {
+"": SubResource("AnimationLibrary_0yp8c")
+}
+next/default = &"default"
+next/spawn = &"default"
 
 [node name="GoalDetector" type="Area2D" parent="."]
 collision_layer = 0
@@ -42,7 +195,6 @@ position = Vector2(-0.5, -3.5)
 shape = SubResource("RectangleShape2D_4fdqg")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2(-0.5, -6)
 shape = SubResource("RectangleShape2D_8l5q6")
 
@@ -54,13 +206,6 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtboxArea"]
 shape = SubResource("CircleShape2D_ci2wq")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-sprite_frames = SubResource("SpriteFrames_raf8e")
-animation = &"run"
-autoplay = "run"
-frame_progress = 0.175552
-offset = Vector2(0, -12)
-
 [node name="HazardArea" type="Area2D" parent="."]
 collision_layer = 64
 collision_mask = 0
@@ -68,6 +213,13 @@ collision_mask = 0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HazardArea"]
 position = Vector2(0, -6)
 shape = SubResource("CircleShape2D_s7toi")
+
+[node name="Visuals" type="Node2D" parent="."]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Visuals"]
+sprite_frames = SubResource("SpriteFrames_raf8e")
+animation = &"spawn"
+offset = Vector2(0, -12)
 
 [connection signal="area_entered" from="GoalDetector" to="." method="_on_goal_detector_area_entered"]
 [connection signal="area_entered" from="HurtboxArea" to="." method="_on_hurtbox_area_area_entered"]

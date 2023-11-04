@@ -38,7 +38,7 @@ position = Vector2(776, -144)
 position = Vector2(498, -53)
 
 [node name="EnemySpawner" parent="Enemies" index="7" instance=ExtResource("4_62vhv")]
-position = Vector2(130, 32)
+position = Vector2(144, 36)
 start_direction = 1
 
 [node name="Coin" parent="Collectibles" index="0" instance=ExtResource("4_h6psi")]
