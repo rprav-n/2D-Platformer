@@ -10,6 +10,8 @@ func _on_area_2d_area_entered(_area: Area2D):
 	animation_player.play("pickup")
 	call_deferred("disable_pickup")
 	
+	GameEvent.player_coin_collect.emit()
+	
 	
 func disable_pickup():
 	collision_shape_2d.disabled = true
