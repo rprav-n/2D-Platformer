@@ -6,6 +6,8 @@ signal died
 
 enum State { NORMAL, DASHING }
 
+@export_flags_2d_physics var dash_hazard_mask
+
 const GRAVITY: int = 1100
 const HORIZONTAL_SPEED: int = 120
 const HORIZONTAL_ACCELERATION: int = 1400
@@ -19,8 +21,16 @@ var can_double_jump: bool = false
 var current_state: State = State.NORMAL
 var is_new_state: bool = true
 
+var default_hazard_mask: int = 0
+
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var coyote_timer: Timer = $CoyoteTimer
+@onready var dash_area_collision_shape_2d: CollisionShape2D = $DashArea/CollisionShape2D
+@onready var hazard_area: Area2D = $HazardArea
+
+
+func _ready():
+	default_hazard_mask = hazard_area.collision_mask
 
 
 func _physics_process(delta: float):
@@ -41,6 +51,8 @@ func change_state(new_state: State):
 
 
 func process_normal(delta: float):
+	if is_new_state:
+		hazard_area.collision_mask = default_hazard_mask
 	var input_axis: float = Input.get_axis("move_left", "move_right")
 	
 	apply_gravity(delta)
@@ -64,6 +76,8 @@ func process_normal(delta: float):
 
 func process_dash(delta: float):
 	if is_new_state:
+		hazard_area.collision_mask = dash_hazard_mask
+		dash_area_collision_shape_2d.disabled = false
 		animated_sprite_2d.play("jump")
 		var direction: int = get_direction()
 		velocity = Vector2(DASH_SPEED * direction, 0)
@@ -72,6 +86,7 @@ func process_dash(delta: float):
 	
 	if abs(velocity.x) <= MIN_DASH_SPEED:
 		call_deferred("change_state", State.NORMAL)
+		dash_area_collision_shape_2d.disabled = true
 
 
 func handle_movement(input_axis: float, delta: float):
@@ -114,3 +129,5 @@ func get_direction() -> int:
 
 func _on_hazard_area_area_entered(_area: Area2D):
 	emit_signal("died")
+
+

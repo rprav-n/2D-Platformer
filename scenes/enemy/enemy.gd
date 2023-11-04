@@ -36,3 +36,7 @@ func change_flip():
 
 func _on_goal_detector_area_entered(_area: Area2D):
 	direction.x *= -1
+
+
+func _on_hurtbox_area_area_entered(_area: Area2D):
+	queue_free()

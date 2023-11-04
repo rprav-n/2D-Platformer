@@ -19,9 +19,6 @@ layer_0/tile_data = PackedInt32Array(196613, 65536, 11, 131077, 65536, 9, 196612
 [node name="Spikes" parent="." instance=ExtResource("4_updwf")]
 position = Vector2(152, -18)
 
-[node name="Spikes2" parent="." instance=ExtResource("4_updwf")]
-position = Vector2(52, 36)
-
 [node name="Player" parent="." instance=ExtResource("2_vdke6")]
 position = Vector2(-61, -18)
 
