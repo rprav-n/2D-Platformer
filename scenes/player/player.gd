@@ -4,6 +4,8 @@ extends CharacterBody2D
 
 signal died
 
+var player_death_scene: PackedScene = preload("res://scenes/player_death/player_death.tscn")
+
 enum State { NORMAL, DASHING }
 
 @export_flags_2d_physics var dash_hazard_mask
@@ -23,6 +25,7 @@ var current_state: State = State.NORMAL
 var is_new_state: bool = true
 
 var default_hazard_mask: int = 0
+var is_dying: bool = false
 
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var coyote_timer: Timer = $CoyoteTimer
@@ -31,6 +34,7 @@ var default_hazard_mask: int = 0
 
 
 func _ready():
+	is_dying = false
 	default_hazard_mask = hazard_area.collision_mask
 
 
@@ -131,6 +135,17 @@ func get_direction() -> int:
 
 
 func _on_hazard_area_area_entered(_area: Area2D):
+	call_deferred("kill")
+
+
+func kill():
+	if is_dying: return
+	is_dying = true
+	var player_death_instance: PlayerDeath = player_death_scene.instantiate() as PlayerDeath
+	player_death_instance.velocity = velocity
+	get_parent().add_child(player_death_instance)
+	player_death_instance.global_position = global_position
+
 	emit_signal("died")
 
 

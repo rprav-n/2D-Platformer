@@ -45,6 +45,7 @@ func _on_player_coin_collect():
 
 func _on_player_died():
 	current_player.queue_free()
+	await get_tree().create_timer(2).timeout
 	create_player()
 
 
