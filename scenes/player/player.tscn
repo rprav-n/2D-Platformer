@@ -85,7 +85,6 @@ texture = ExtResource("1_7s2bl")
 lifetime = 0.4
 
 [node name="PickupArea" type="Area2D" parent="."]
-visible = false
 collision_layer = 4
 collision_mask = 0
 
@@ -94,7 +93,6 @@ position = Vector2(0, -11)
 shape = SubResource("CircleShape2D_oyoq8")
 
 [node name="HazardArea" type="Area2D" parent="."]
-visible = false
 collision_layer = 0
 collision_mask = 72
 
@@ -104,7 +102,7 @@ shape = SubResource("RectangleShape2D_m3b3h")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_1urw2")
-animation = &"idle"
+animation = &"run"
 autoplay = "idle"
 offset = Vector2(0, -12)
 
@@ -123,3 +121,4 @@ shape = SubResource("CapsuleShape2D_4c18p")
 disabled = true
 
 [connection signal="area_entered" from="HazardArea" to="." method="_on_hazard_area_area_entered"]
+[connection signal="frame_changed" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_frame_changed"]

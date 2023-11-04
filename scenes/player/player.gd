@@ -5,6 +5,7 @@ extends CharacterBody2D
 signal died
 
 var player_death_scene: PackedScene = preload("res://scenes/player_death/player_death.tscn")
+var footstep_particles_scene: PackedScene = preload("res://scenes/particles/footstep/footstep_particles.tscn")
 
 enum State { NORMAL, DASHING }
 
@@ -72,6 +73,9 @@ func process_normal(delta: float):
 	if was_on_floor && !is_on_floor():
 		coyote_timer.start()
 	
+	if !was_on_floor && is_on_floor() && !is_new_state:
+		spawn_footstep_particles(1.5)
+	
 	if is_on_floor():
 		can_double_jump = true
 		can_dash = true
@@ -137,6 +141,13 @@ func get_direction() -> int:
 	return 1 if animated_sprite_2d.flip_h else -1
 
 
+func spawn_footstep_particles(f_scale: float = 1.0):
+	var footstep_particle: Node2D = footstep_particles_scene.instantiate() as Node2D
+	get_parent().add_child(footstep_particle)
+	footstep_particle.scale = Vector2.ONE * f_scale
+	footstep_particle.global_position = global_position
+
+
 func _on_hazard_area_area_entered(_area: Area2D):
 	call_deferred("kill")
 
@@ -151,4 +162,8 @@ func kill():
 
 	emit_signal("died")
 
+
+func _on_animated_sprite_2d_frame_changed():
+	if animated_sprite_2d.animation == "run" and animated_sprite_2d.frame == 0:
+		spawn_footstep_particles()
 
