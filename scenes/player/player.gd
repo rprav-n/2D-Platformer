@@ -8,16 +8,17 @@ enum State { NORMAL, DASHING }
 
 @export_flags_2d_physics var dash_hazard_mask
 
-const GRAVITY: int = 1100
+const GRAVITY: int = 1200
 const HORIZONTAL_SPEED: int = 120
 const HORIZONTAL_ACCELERATION: int = 1400
 const FRICTION: int = 1000
-const JUMP_SPEED: int = 360
+const JUMP_SPEED: int = 320
 const JUMP_TERMINATION_MULTIPLIER: float = 2.5
-const DASH_SPEED: int = 350
+const DASH_SPEED: int = 360
 const MIN_DASH_SPEED: int = 200
 
 var can_double_jump: bool = false
+var can_dash: bool = false
 var current_state: State = State.NORMAL
 var is_new_state: bool = true
 
@@ -67,15 +68,17 @@ func process_normal(delta: float):
 	
 	if is_on_floor():
 		can_double_jump = true
+		can_dash = true
 	
-	if Input.is_action_just_pressed("dash"):
+	if Input.is_action_just_pressed("dash") && can_dash:
 		call_deferred("change_state", State.DASHING)
+		can_dash = false
 	
 	update_animation(input_axis)
 
 
 func process_dash(delta: float):
-	if is_new_state:
+	if is_new_state:		
 		hazard_area.collision_mask = dash_hazard_mask
 		dash_area_collision_shape_2d.disabled = false
 		animated_sprite_2d.play("jump")
