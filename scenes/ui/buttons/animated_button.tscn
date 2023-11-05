@@ -1,0 +1,71 @@
+[gd_scene load_steps=7 format=3 uid="uid://csnql7nxh0ab5"]
+
+[ext_resource type="Theme" uid="uid://c2d2vxclxkr4l" path="res://resources/theme.tres" id="1_f8sre"]
+[ext_resource type="Script" path="res://scenes/ui/buttons/animated_button.gd" id="2_dib3e"]
+
+[sub_resource type="Animation" id="Animation_j0ul6"]
+resource_name = "hover"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:custom_minimum_size")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(96, 24), Vector2(112, 24)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_s3qyw"]
+_data = {
+"hover": SubResource("Animation_j0ul6")
+}
+
+[sub_resource type="Animation" id="Animation_glyuy"]
+resource_name = "click"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0872665, -0.0523599, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_svvkw"]
+_data = {
+"click": SubResource("Animation_glyuy")
+}
+
+[node name="AnimatedButton" type="Button"]
+custom_minimum_size = Vector2(96, 24)
+offset_right = 8.0
+offset_bottom = 8.0
+pivot_offset = Vector2(48, 12)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("1_f8sre")
+text = "TEST TEXT"
+script = ExtResource("2_dib3e")
+
+[node name="HoverAnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_s3qyw")
+}
+
+[node name="ClickAnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_svvkw")
+}
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
+[connection signal="pressed" from="." to="." method="_on_pressed"]
