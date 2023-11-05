@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3 uid="uid://bq75s87fyckie"]
+
+[ext_resource type="Theme" uid="uid://c2d2vxclxkr4l" path="res://resources/theme.tres" id="1_17slm"]
+[ext_resource type="PackedScene" uid="uid://csnql7nxh0ab5" path="res://scenes/ui/buttons/animated_button.tscn" id="1_y8t3d"]
+[ext_resource type="Script" path="res://scenes/util/range_control/range_control.gd" id="2_qqnm3"]
+
+[node name="RangeControl" type="HBoxContainer"]
+custom_minimum_size = Vector2(10, 0)
+size_flags_horizontal = 10
+theme = ExtResource("1_17slm")
+script = ExtResource("2_qqnm3")
+
+[node name="SubtractButton" parent="." instance=ExtResource("1_y8t3d")]
+custom_minimum_size = Vector2(24, 0)
+layout_mode = 2
+text = "-"
+disable_hover_animation = true
+
+[node name="VolumeLabel" type="Label" parent="."]
+layout_mode = 2
+text = "10"
+vertical_alignment = 1
+
+[node name="PlusButton" parent="." instance=ExtResource("1_y8t3d")]
+custom_minimum_size = Vector2(24, 0)
+layout_mode = 2
+text = "+"
+disable_hover_animation = true
+
+[connection signal="pressed" from="SubtractButton" to="." method="_on_subtract_button_pressed"]
+[connection signal="pressed" from="PlusButton" to="." method="_on_plus_button_pressed"]
