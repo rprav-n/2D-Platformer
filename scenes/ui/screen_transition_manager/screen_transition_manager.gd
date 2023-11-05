@@ -8,3 +8,7 @@ func transition_to_scene(scene_path: String):
 	add_child(screen_transition)
 	await screen_transition.screen_covered
 	get_tree().change_scene_to_file(scene_path)
+
+
+func transition_to_menu():
+	transition_to_scene("res://scenes/ui/main_menu/main_menu.tscn")

@@ -17,6 +17,7 @@ func unpause():
 	get_tree().paused = false
 
 func _on_resume_button_pressed():
+	await get_tree().create_timer(0.3).timeout
 	unpause()
 
 
@@ -25,5 +26,5 @@ func _on_options_button_pressed():
 
 
 func _on_quit_to_menu_button_pressed():
+	ScreenTransitionManager.transition_to_menu()
 	unpause()
-	ScreenTransitionManager.transition_to_scene("res://scenes/ui/main_menu/main_menu.tscn")

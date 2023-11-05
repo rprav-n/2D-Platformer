@@ -15,7 +15,6 @@ func _ready():
 
 
 func _on_play_button_pressed():
-	await get_tree().create_timer(0.3).timeout
 	LevelManager.change_level(0)
 	
 	

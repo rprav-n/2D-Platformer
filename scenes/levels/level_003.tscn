@@ -1,5 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://d03tlbidnswps"]
+[gd_scene load_steps=3 format=3 uid="uid://d03tlbidnswps"]
 
 [ext_resource type="PackedScene" uid="uid://d5ajpv3xy844" path="res://scenes/base_level/base_level.tscn" id="1_el861"]
+[ext_resource type="PackedScene" uid="uid://hc0rcvaw70fi" path="res://scenes/ui/level_complete_ui/level_complete_ui.tscn" id="2_4s0u8"]
 
 [node name="BaseLevel" instance=ExtResource("1_el861")]
+level_comlpete_scene = ExtResource("2_4s0u8")
+
+[node name="TileMap" parent="." index="2"]
+layer_0/tile_data = PackedInt32Array(65554, 131072, 11, 18, 131072, 9, 65553, 65536, 11, 17, 65536, 9, 65552, 65536, 11, 16, 65536, 9, 65551, 65536, 11, 15, 65536, 9, 65550, 65536, 11, 14, 65536, 9, 65549, 65536, 11, 13, 65536, 9, 65548, 65536, 11, 12, 65536, 9, 65547, 65536, 11, 11, 65536, 9, 65546, 65536, 11, 10, 65536, 9, 65545, 65536, 11, 9, 65536, 9, 65544, 65536, 11, 8, 65536, 9, 65543, 65536, 11, 7, 65536, 9, 65542, 65536, 11, 6, 65536, 9, 65541, 65536, 11, 5, 65536, 9, 65540, 65536, 11, 4, 65536, 9, 65539, 65536, 11, 3, 65536, 9, 65538, 65536, 11, 2, 65536, 9, 65537, 65536, 11, 1, 65536, 9, 65536, 65536, 11, 0, 65536, 9, 131071, 65536, 11, 65535, 65536, 9, 131070, 65536, 11, 65534, 65536, 9, 131069, 65536, 11, 65533, 65536, 9, 131068, 65536, 11, 65532, 65536, 9, 131067, 0, 11, 65531, 0, 9)
+
+[node name="Flag" parent="." index="5"]
+position = Vector2(72, 0)
