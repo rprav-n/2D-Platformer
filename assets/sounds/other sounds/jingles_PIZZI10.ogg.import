@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://dfc2dm0qjqjy4"
+path="res://.godot/imported/jingles_PIZZI10.ogg-f58474cae5adc49ba33296a4e59131ce.oggvorbisstr"
+
+[deps]
+
+source_file="res://assets/sounds/other sounds/jingles_PIZZI10.ogg"
+dest_files=["res://.godot/imported/jingles_PIZZI10.ogg-f58474cae5adc49ba33296a4e59131ce.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

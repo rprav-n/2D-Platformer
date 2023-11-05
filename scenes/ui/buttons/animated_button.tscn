@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://csnql7nxh0ab5"]
+[gd_scene load_steps=8 format=3 uid="uid://csnql7nxh0ab5"]
 
 [ext_resource type="Theme" uid="uid://c2d2vxclxkr4l" path="res://resources/theme.tres" id="1_f8sre"]
 [ext_resource type="Script" path="res://scenes/ui/buttons/animated_button.gd" id="2_dib3e"]
+[ext_resource type="AudioStream" uid="uid://c1m3tsyp258iq" path="res://assets/sounds/other sounds/click_002.ogg" id="3_mbfti"]
 
 [sub_resource type="Animation" id="Animation_j0ul6"]
 resource_name = "hover"
@@ -55,6 +56,10 @@ size_flags_vertical = 4
 theme = ExtResource("1_f8sre")
 text = "TEST TEXT"
 script = ExtResource("2_dib3e")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_mbfti")
+bus = &"SFX"
 
 [node name="HoverAnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

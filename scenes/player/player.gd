@@ -12,6 +12,7 @@ enum State { NORMAL, DASHING, INPUT_DISABLED }
 @export_flags_2d_physics var dash_hazard_mask
 
 @onready var footstep_audio_player: RandomAudioStreamPlayer = $FootstepAudioPlayer
+@onready var dash_audio_player: RandomAudioStreamPlayer = $DashAudioPlayer
 
 
 const GRAVITY: int = 1200
@@ -94,6 +95,7 @@ func process_normal(delta: float):
 
 func process_dash(delta: float):
 	if is_new_state:
+		dash_audio_player.play()
 		dash_particles.emitting = true
 		hazard_area.collision_mask = dash_hazard_mask
 		dash_area_collision_shape_2d.disabled = false

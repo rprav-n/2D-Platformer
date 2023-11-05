@@ -1,13 +1,24 @@
-[gd_scene load_steps=3 format=3 uid="uid://1nd41ytyc11g"]
+[gd_scene load_steps=5 format=3 uid="uid://1nd41ytyc11g"]
 
 [ext_resource type="PackedScene" uid="uid://d5ajpv3xy844" path="res://scenes/base_level/base_level.tscn" id="1_ha047"]
 [ext_resource type="PackedScene" uid="uid://hc0rcvaw70fi" path="res://scenes/ui/level_complete_ui/level_complete_ui.tscn" id="2_0ocys"]
+[ext_resource type="PackedScene" uid="uid://rac76luvmirq" path="res://scenes/spikes/spikes.tscn" id="5_dtkl7"]
+[ext_resource type="PackedScene" uid="uid://b2qjpqumrpfit" path="res://scenes/coin/coin.tscn" id="5_w1awb"]
 
 [node name="BaseLevel" instance=ExtResource("1_ha047")]
 level_comlpete_scene = ExtResource("2_0ocys")
 
 [node name="TileMap" parent="." index="2"]
-layer_0/tile_data = PackedInt32Array(6, 131072, 9, 5, 65536, 9, 4, 65536, 9, 3, 65536, 9, 2, 65536, 9, 1, 65536, 9, 0, 65536, 9, 65535, 65536, 9, 65534, 65536, 9, 65533, 0, 9, 65542, 131072, 11, 65541, 65536, 11, 65540, 65536, 11, 65539, 65536, 11, 65538, 65536, 11, 65537, 65536, 11, 65536, 65536, 11, 131071, 65536, 11, 131070, 65536, 11, 131069, 0, 11)
+layer_0/tile_data = PackedInt32Array(6, 65536, 9, 5, 65536, 9, 4, 65536, 9, 3, 65536, 9, 2, 65536, 9, 1, 65536, 9, 0, 65536, 9, 65535, 65536, 9, 65534, 65536, 9, 65533, 0, 9, 65542, 65536, 11, 65541, 65536, 11, 65540, 65536, 11, 65539, 65536, 11, 65538, 65536, 11, 65537, 65536, 11, 65536, 65536, 11, 131071, 65536, 11, 131070, 65536, 11, 131069, 0, 11, 7, 65536, 9, 65543, 65536, 11, 8, 65536, 9, 9, 65536, 9, 10, 65536, 9, 11, 65536, 9, 12, 65536, 9, 65548, 65536, 11, 65547, 65536, 11, 65546, 65536, 11, 65545, 65536, 11, 65544, 65536, 11, 13, 65536, 9, 14, 65536, 9, 16, 65536, 9, 15, 65536, 9, 18, 65536, 9, 17, 65536, 9, 19, 65536, 9, 21, 65536, 9, 20, 65536, 9, 23, 65536, 9, 22, 65536, 9, 24, 65536, 9, 26, 65536, 9, 25, 65536, 9, 27, 65536, 9, 28, 65536, 9, 29, 65536, 9, 30, 65536, 9, 31, 65536, 9, 32, 65536, 9, 33, 131072, 9, 65568, 65536, 11, 65569, 131072, 11, 65567, 65536, 11, 65566, 65536, 11, 65565, 65536, 11, 65564, 65536, 11, 65563, 65536, 11, 65562, 65536, 11, 65561, 65536, 11, 65560, 65536, 11, 65559, 65536, 11, 65558, 65536, 11, 65557, 65536, 11, 65556, 65536, 11, 65555, 65536, 11, 65554, 65536, 11, 65553, 65536, 11, 65552, 65536, 11, 65551, 65536, 11, 65550, 65536, 11, 65549, 65536, 11)
 
 [node name="Flag" parent="." index="5"]
-position = Vector2(108, 0)
+position = Vector2(593, -2)
+
+[node name="Coin" parent="Collectibles" index="0" instance=ExtResource("5_w1awb")]
+position = Vector2(64, -9)
+
+[node name="Coin2" parent="Collectibles" index="1" instance=ExtResource("5_w1awb")]
+position = Vector2(91, -9)
+
+[node name="Spikes" parent="Hazards" index="0" instance=ExtResource("5_dtkl7")]
+position = Vector2(-43, 0)

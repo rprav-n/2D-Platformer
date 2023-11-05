@@ -1,10 +1,17 @@
-[gd_scene load_steps=14 format=3 uid="uid://dv55do2clt8ns"]
+[gd_scene load_steps=21 format=3 uid="uid://dv55do2clt8ns"]
 
 [ext_resource type="Script" path="res://scenes/flag/flag.gd" id="1_1k57a"]
 [ext_resource type="Texture2D" uid="uid://c3lnl7b6n5tka" path="res://assets/flag/tile_0131.png" id="1_25v4k"]
+[ext_resource type="AudioStream" uid="uid://dfc2dm0qjqjy4" path="res://assets/sounds/other sounds/jingles_PIZZI10.ogg" id="2_30pur"]
 [ext_resource type="Texture2D" uid="uid://o81ksfk8prkv" path="res://assets/flag/tile_0111.png" id="2_qmvy8"]
+[ext_resource type="Script" path="res://scenes/util/random_audio_stream_player.gd" id="2_v2o54"]
+[ext_resource type="AudioStream" uid="uid://7i2b3xpvia5p" path="res://assets/sounds/impactPlate_medium_000.ogg" id="3_qod4a"]
 [ext_resource type="Texture2D" uid="uid://urc73ekialj6" path="res://assets/flag/tile_0112.png" id="3_uskpy"]
+[ext_resource type="AudioStream" uid="uid://dea11y4adutly" path="res://assets/sounds/impactPlate_medium_001.ogg" id="4_jlhjk"]
+[ext_resource type="AudioStream" uid="uid://cyfest0hj6mfk" path="res://assets/sounds/impactPlate_medium_002.ogg" id="5_68nwr"]
 [ext_resource type="Texture2D" uid="uid://cme10480v7ckp" path="res://assets/effects/confetti.png" id="5_tybwj"]
+[ext_resource type="AudioStream" uid="uid://gx3hxlk7hjmq" path="res://assets/sounds/impactPlate_medium_003.ogg" id="6_3hocp"]
+[ext_resource type="AudioStream" uid="uid://lvsh82v2y8rx" path="res://assets/sounds/impactPlate_medium_004.ogg" id="7_y7gg0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yntdl"]
 size = Vector2(20, 36)
@@ -73,6 +80,35 @@ anim_offset_max = 1.0
 
 [node name="Flag" type="Node2D"]
 script = ExtResource("1_1k57a")
+
+[node name="RandomAudioStreamPlayer" type="Node" parent="."]
+script = ExtResource("2_v2o54")
+number_to_play = 1
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="RandomAudioStreamPlayer"]
+stream = ExtResource("3_qod4a")
+bus = &"SFX"
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="RandomAudioStreamPlayer"]
+stream = ExtResource("4_jlhjk")
+bus = &"SFX"
+
+[node name="AudioStreamPlayer3" type="AudioStreamPlayer" parent="RandomAudioStreamPlayer"]
+stream = ExtResource("5_68nwr")
+bus = &"SFX"
+
+[node name="AudioStreamPlayer4" type="AudioStreamPlayer" parent="RandomAudioStreamPlayer"]
+stream = ExtResource("6_3hocp")
+bus = &"SFX"
+
+[node name="AudioStreamPlayer5" type="AudioStreamPlayer" parent="RandomAudioStreamPlayer"]
+stream = ExtResource("7_y7gg0")
+bus = &"SFX"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_30pur")
+volume_db = -20.0
+bus = &"SFX"
 
 [node name="Area2D" type="Area2D" parent="."]
 position = Vector2(3, -18)

@@ -1,6 +1,18 @@
-[gd_scene load_steps=7 format=3 uid="uid://ddjfffh1osb32"]
+[gd_scene load_steps=19 format=3 uid="uid://ddjfffh1osb32"]
 
 [ext_resource type="Texture2D" uid="uid://d08ydtgk3qbuv" path="res://assets/enemy/character_0015.png" id="1_cv26f"]
+[ext_resource type="PackedScene" uid="uid://b33ywo0ok0eet" path="res://scenes/util/random_audio_stream_player.tscn" id="1_eymt7"]
+[ext_resource type="Script" path="res://scenes/enemy_death/enemy_death.gd" id="1_u4e0x"]
+[ext_resource type="AudioStream" uid="uid://dgnvofog5oyae" path="res://assets/sounds/impactMetal_heavy_000.ogg" id="3_woife"]
+[ext_resource type="AudioStream" uid="uid://dq2hhl6nbplik" path="res://assets/sounds/impactMetal_heavy_001.ogg" id="4_fb83i"]
+[ext_resource type="AudioStream" uid="uid://dv1p04m5bqbhi" path="res://assets/sounds/impactMetal_heavy_002.ogg" id="5_dmrvk"]
+[ext_resource type="AudioStream" uid="uid://cfp8pj3th7i8u" path="res://assets/sounds/impactMetal_heavy_003.ogg" id="6_u5474"]
+[ext_resource type="AudioStream" uid="uid://c84evbv028wh8" path="res://assets/sounds/impactMetal_heavy_004.ogg" id="7_y4fdb"]
+[ext_resource type="AudioStream" uid="uid://bfq7trjoof4tj" path="res://assets/sounds/impactMining_000.ogg" id="8_vm5sa"]
+[ext_resource type="AudioStream" uid="uid://c2mhkxtxnn45i" path="res://assets/sounds/impactMining_001.ogg" id="9_ifl05"]
+[ext_resource type="AudioStream" uid="uid://cspkn0d66n4r6" path="res://assets/sounds/impactMining_002.ogg" id="10_i42ek"]
+[ext_resource type="AudioStream" uid="uid://dw2ohww3j56ni" path="res://assets/sounds/impactMining_003.ogg" id="11_3ek76"]
+[ext_resource type="AudioStream" uid="uid://3a5jdp13kkvp" path="res://assets/sounds/impactMining_004.ogg" id="12_cyh3i"]
 
 [sub_resource type="Animation" id="Animation_1nonu"]
 resource_name = "death"
@@ -58,6 +70,53 @@ orbit_velocity_max = 0.0
 scale_curve = SubResource("CurveTexture_7qsrx")
 
 [node name="EnemyDeath" type="Node2D"]
+script = ExtResource("1_u4e0x")
+
+[node name="DeathSoundPlayer1" parent="." instance=ExtResource("1_eymt7")]
+number_to_play = 1
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="DeathSoundPlayer1"]
+stream = ExtResource("3_woife")
+bus = &"SFX"
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="DeathSoundPlayer1"]
+stream = ExtResource("4_fb83i")
+bus = &"SFX"
+
+[node name="AudioStreamPlayer3" type="AudioStreamPlayer" parent="DeathSoundPlayer1"]
+stream = ExtResource("5_dmrvk")
+bus = &"SFX"
+
+[node name="AudioStreamPlayer4" type="AudioStreamPlayer" parent="DeathSoundPlayer1"]
+stream = ExtResource("6_u5474")
+bus = &"SFX"
+
+[node name="AudioStreamPlayer5" type="AudioStreamPlayer" parent="DeathSoundPlayer1"]
+stream = ExtResource("7_y4fdb")
+bus = &"SFX"
+
+[node name="DeathSoundPlayer2" parent="." instance=ExtResource("1_eymt7")]
+number_to_play = 1
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="DeathSoundPlayer2"]
+stream = ExtResource("8_vm5sa")
+bus = &"SFX"
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="DeathSoundPlayer2"]
+stream = ExtResource("9_ifl05")
+bus = &"SFX"
+
+[node name="AudioStreamPlayer3" type="AudioStreamPlayer" parent="DeathSoundPlayer2"]
+stream = ExtResource("10_i42ek")
+bus = &"SFX"
+
+[node name="AudioStreamPlayer4" type="AudioStreamPlayer" parent="DeathSoundPlayer2"]
+stream = ExtResource("11_3ek76")
+bus = &"SFX"
+
+[node name="AudioStreamPlayer5" type="AudioStreamPlayer" parent="DeathSoundPlayer2"]
+stream = ExtResource("12_cyh3i")
+bus = &"SFX"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "death"

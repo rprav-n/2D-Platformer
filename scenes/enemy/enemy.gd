@@ -4,11 +4,12 @@ extends CharacterBody2D
 
 @export var is_spawning: bool = true
 
+@onready var animated_sprite_2d: AnimatedSprite2D = $Visuals/AnimatedSprite2D
+
 const MAX_SPEED: int = 25
 const GRAVITY: int = 600
 
 var direction: Vector2 = Vector2.RIGHT
-@onready var animated_sprite_2d: AnimatedSprite2D = $Visuals/AnimatedSprite2D
 
 var enemy_death_scene: PackedScene = preload("res://scenes/enemy_death/enemy_death.tscn")
 

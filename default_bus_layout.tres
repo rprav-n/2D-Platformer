@@ -1,9 +1,29 @@
-[gd_resource type="AudioBusLayout" load_steps=2 format=3 uid="uid://cn3ycq43nx5vo"]
+[gd_resource type="AudioBusLayout" load_steps=6 format=3 uid="uid://cn3ycq43nx5vo"]
 
 [sub_resource type="AudioEffectHighPassFilter" id="AudioEffectHighPassFilter_rpf36"]
 resource_name = "HighPassFilter"
 cutoff_hz = 3000.0
 resonance = 0.25
+
+[sub_resource type="AudioEffectReverb" id="AudioEffectReverb_hj4gu"]
+resource_name = "Reverb"
+room_size = 0.0
+damping = 0.25
+hipass = 0.5
+dry = 0.5
+wet = 0.25
+
+[sub_resource type="AudioEffectLowPassFilter" id="AudioEffectLowPassFilter_ttbs0"]
+resource_name = "LowPassFilter"
+
+[sub_resource type="AudioEffectChorus" id="AudioEffectChorus_56x8a"]
+resource_name = "Chorus"
+dry = 0.4
+voice/1/delay_ms = 50.0
+
+[sub_resource type="AudioEffectPitchShift" id="AudioEffectPitchShift_gwxpg"]
+resource_name = "PitchShift"
+pitch_scale = 0.5
 
 [resource]
 bus/1/name = &"SFX"
@@ -20,9 +40,29 @@ bus/2/volume_db = 0.0
 bus/2/send = &"SFX"
 bus/2/effect/0/effect = SubResource("AudioEffectHighPassFilter_rpf36")
 bus/2/effect/0/enabled = true
-bus/3/name = &"Music"
+bus/3/name = &"Reverb"
 bus/3/solo = false
 bus/3/mute = false
 bus/3/bypass_fx = false
 bus/3/volume_db = 0.0
-bus/3/send = &"Master"
+bus/3/send = &"SFX"
+bus/3/effect/0/effect = SubResource("AudioEffectReverb_hj4gu")
+bus/3/effect/0/enabled = false
+bus/3/effect/1/effect = SubResource("AudioEffectLowPassFilter_ttbs0")
+bus/3/effect/1/enabled = true
+bus/3/effect/2/effect = SubResource("AudioEffectChorus_56x8a")
+bus/3/effect/2/enabled = true
+bus/4/name = &"PlayerDash"
+bus/4/solo = false
+bus/4/mute = false
+bus/4/bypass_fx = false
+bus/4/volume_db = 0.0
+bus/4/send = &"SFX"
+bus/4/effect/0/effect = SubResource("AudioEffectPitchShift_gwxpg")
+bus/4/effect/0/enabled = true
+bus/5/name = &"Music"
+bus/5/solo = false
+bus/5/mute = false
+bus/5/bypass_fx = false
+bus/5/volume_db = 0.0
+bus/5/send = &"Master"

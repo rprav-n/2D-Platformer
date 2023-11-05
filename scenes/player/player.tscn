@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://bstpklwoknbgg"]
+[gd_scene load_steps=26 format=3 uid="uid://bstpklwoknbgg"]
 
 [ext_resource type="Texture2D" uid="uid://2kjq3ui5hl43" path="res://assets/player/character_0000.png" id="1_7s2bl"]
 [ext_resource type="Shader" path="res://scenes/player/player.gdshader" id="1_qinww"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://b33ywo0ok0eet" path="res://scenes/util/random_audio_stream_player.tscn" id="2_871j6"]
 [ext_resource type="AudioStream" uid="uid://nu1v8klpwrhq" path="res://assets/sounds/footstep_grass_000.ogg" id="3_0s806"]
 [ext_resource type="Texture2D" uid="uid://c7y2jm8bthka7" path="res://assets/player/character_0001.png" id="3_f4kmg"]
+[ext_resource type="AudioStream" uid="uid://dc3o5xb4owbg0" path="res://assets/sounds/impactBell_heavy_004.ogg" id="3_kri0m"]
 [ext_resource type="AudioStream" uid="uid://cat5xocqnkody" path="res://assets/sounds/footstep_grass_001.ogg" id="4_yvsd3"]
 [ext_resource type="AudioStream" uid="uid://bavu26e5spor6" path="res://assets/sounds/footstep_grass_002.ogg" id="5_l7snb"]
 [ext_resource type="AudioStream" uid="uid://cnpcaiibt6ald" path="res://assets/sounds/footstep_grass_003.ogg" id="6_3pmij"]
@@ -80,6 +81,18 @@ radius = 11.0
 collision_layer = 2
 script = ExtResource("1_wuqfy")
 dash_hazard_mask = 8
+
+[node name="DashAudioPlayer" parent="." instance=ExtResource("2_871j6")]
+number_to_play = 1
+enable_pitch_randomization = false
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="DashAudioPlayer"]
+stream = ExtResource("3_kri0m")
+bus = &"PlayerDash"
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="DashAudioPlayer"]
+stream = ExtResource("3_kri0m")
+bus = &"PlayerDash"
 
 [node name="FootstepAudioPlayer" parent="." instance=ExtResource("2_871j6")]
 number_to_play = 3
