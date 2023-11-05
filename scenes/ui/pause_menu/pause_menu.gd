@@ -24,6 +24,7 @@ func _on_resume_button_pressed():
 
 
 func _on_options_button_pressed():
+	await get_tree().create_timer(0.3).timeout
 	pause_menu_container.visible = false
 	var option_menu: OptionMenu = option_menu_scene.instantiate() as OptionMenu
 	add_child(option_menu)

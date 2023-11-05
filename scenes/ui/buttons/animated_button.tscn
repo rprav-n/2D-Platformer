@@ -46,7 +46,7 @@ _data = {
 "click": SubResource("Animation_glyuy")
 }
 
-[node name="AnimatedButton" type="Button"]
+[node name="AnimatedButton" type="Button" groups=["animated_button"]]
 custom_minimum_size = Vector2(96, 24)
 offset_right = 8.0
 offset_bottom = 8.0

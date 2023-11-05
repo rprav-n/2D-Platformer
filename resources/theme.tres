@@ -1,8 +1,17 @@
-[gd_resource type="Theme" load_steps=9 format=3 uid="uid://c2d2vxclxkr4l"]
+[gd_resource type="Theme" load_steps=10 format=3 uid="uid://c2d2vxclxkr4l"]
 
 [ext_resource type="FontVariation" uid="uid://dfb10ikpy7k0i" path="res://resources/font.tres" id="1_jbyqk"]
 [ext_resource type="Texture2D" uid="uid://cldfbshi43745" path="res://assets/ui/tile_0029.png" id="1_k2xaj"]
 [ext_resource type="Texture2D" uid="uid://dms0rroy0c4vb" path="res://assets/ui/tile_0009.png" id="1_ykjjv"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_dg8c0"]
+texture = ExtResource("1_k2xaj")
+texture_margin_left = 5.0
+texture_margin_top = 7.0
+texture_margin_right = 5.0
+texture_margin_bottom = 5.0
+region_rect = Rect2(0, 0, 18, 18)
+modulate_color = Color(0.333333, 0.333333, 0.333333, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_euqhu"]
 
@@ -42,6 +51,7 @@ anti_aliasing = false
 default_font = ExtResource("1_jbyqk")
 Button/colors/font_color = Color(0.435294, 0.243137, 0.262745, 1)
 Button/colors/font_pressed_color = Color(0.317647, 0.168627, 0.184314, 1)
+Button/styles/disabled = SubResource("StyleBoxTexture_dg8c0")
 Button/styles/focus = SubResource("StyleBoxEmpty_euqhu")
 Button/styles/hover = SubResource("StyleBoxTexture_bm2xp")
 Button/styles/normal = SubResource("StyleBoxTexture_qv7al")
