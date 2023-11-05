@@ -57,6 +57,6 @@ func _on_player_died():
 
 
 func _on_flag_player_won():
-	current_player.queue_free()
+	current_player.disable_player_input()
 	var level_complete: LevelCompleteUI = level_comlpete_scene.instantiate() as LevelCompleteUI
 	add_child(level_complete)

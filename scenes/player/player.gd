@@ -7,7 +7,7 @@ signal died
 var player_death_scene: PackedScene = preload("res://scenes/player_death/player_death.tscn")
 var footstep_particles_scene: PackedScene = preload("res://scenes/particles/footstep/footstep_particles.tscn")
 
-enum State { NORMAL, DASHING }
+enum State { NORMAL, DASHING, INPUT_DISABLED }
 
 @export_flags_2d_physics var dash_hazard_mask
 
@@ -46,6 +46,8 @@ func _physics_process(delta: float):
 			process_normal(delta)
 		State.DASHING:
 			process_dash(delta)
+		State.INPUT_DISABLED:
+			process_input_disabled(delta)
 	
 	is_new_state = false	
 	
@@ -102,6 +104,13 @@ func process_dash(delta: float):
 		call_deferred("change_state", State.NORMAL)
 		dash_area_collision_shape_2d.disabled = true
 
+
+func process_input_disabled(delta: float):
+	if is_new_state:
+		animated_sprite_2d.play("idle")
+	apply_gravity(delta)
+	velocity.x = 0
+	move_and_slide()
 
 func handle_movement(input_axis: float, delta: float):
 	if input_axis != 0:
@@ -167,3 +176,6 @@ func _on_animated_sprite_2d_frame_changed():
 	if animated_sprite_2d.animation == "run" and animated_sprite_2d.frame == 0:
 		spawn_footstep_particles()
 
+
+func disable_player_input():
+	change_state(State.INPUT_DISABLED)
