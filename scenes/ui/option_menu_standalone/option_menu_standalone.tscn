@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://dkx1x1gappmgu"]
+
+[ext_resource type="Script" path="res://scenes/ui/option_menu_standalone/option_menu_standalone.gd" id="1_5eogr"]
+[ext_resource type="PackedScene" uid="uid://cpa0l3wqs8oc7" path="res://scenes/ui/menu_background/menu_background.tscn" id="1_dvs4i"]
+[ext_resource type="PackedScene" uid="uid://cqv0ssm2tft3t" path="res://scenes/ui/option_menu/option_menu.tscn" id="2_i7qit"]
+
+[node name="OptionMenuStandalone" type="CanvasLayer"]
+script = ExtResource("1_5eogr")
+
+[node name="MenuBackground" parent="." instance=ExtResource("1_dvs4i")]
+
+[node name="OptionMenu" parent="." instance=ExtResource("2_i7qit")]
+layer = 2
