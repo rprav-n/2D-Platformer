@@ -1,9 +1,20 @@
-[gd_scene load_steps=14 format=3 uid="uid://bstpklwoknbgg"]
+[gd_scene load_steps=25 format=3 uid="uid://bstpklwoknbgg"]
 
 [ext_resource type="Texture2D" uid="uid://2kjq3ui5hl43" path="res://assets/player/character_0000.png" id="1_7s2bl"]
 [ext_resource type="Shader" path="res://scenes/player/player.gdshader" id="1_qinww"]
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_wuqfy"]
+[ext_resource type="PackedScene" uid="uid://b33ywo0ok0eet" path="res://scenes/util/random_audio_stream_player.tscn" id="2_871j6"]
+[ext_resource type="AudioStream" uid="uid://nu1v8klpwrhq" path="res://assets/sounds/footstep_grass_000.ogg" id="3_0s806"]
 [ext_resource type="Texture2D" uid="uid://c7y2jm8bthka7" path="res://assets/player/character_0001.png" id="3_f4kmg"]
+[ext_resource type="AudioStream" uid="uid://cat5xocqnkody" path="res://assets/sounds/footstep_grass_001.ogg" id="4_yvsd3"]
+[ext_resource type="AudioStream" uid="uid://bavu26e5spor6" path="res://assets/sounds/footstep_grass_002.ogg" id="5_l7snb"]
+[ext_resource type="AudioStream" uid="uid://cnpcaiibt6ald" path="res://assets/sounds/footstep_grass_003.ogg" id="6_3pmij"]
+[ext_resource type="AudioStream" uid="uid://dvxx58fcgw6i0" path="res://assets/sounds/footstep_grass_004.ogg" id="7_06at1"]
+[ext_resource type="AudioStream" uid="uid://c8eh83micvjwo" path="res://assets/sounds/footstep_concrete_000.ogg" id="8_l17en"]
+[ext_resource type="AudioStream" uid="uid://bb31ysp2t80mj" path="res://assets/sounds/footstep_concrete_001.ogg" id="9_vck2h"]
+[ext_resource type="AudioStream" uid="uid://bekeqpbrkan6f" path="res://assets/sounds/footstep_concrete_002.ogg" id="10_xrqni"]
+[ext_resource type="AudioStream" uid="uid://cwr5e734wbm3a" path="res://assets/sounds/footstep_concrete_003.ogg" id="11_ugamo"]
+[ext_resource type="AudioStream" uid="uid://qiefxhjxocot" path="res://assets/sounds/footstep_concrete_004.ogg" id="12_3oaps"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_nawmg"]
 shader = ExtResource("1_qinww")
@@ -69,6 +80,39 @@ radius = 11.0
 collision_layer = 2
 script = ExtResource("1_wuqfy")
 dash_hazard_mask = 8
+
+[node name="FootstepAudioPlayer" parent="." instance=ExtResource("2_871j6")]
+number_to_play = 3
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="FootstepAudioPlayer"]
+stream = ExtResource("3_0s806")
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="FootstepAudioPlayer"]
+stream = ExtResource("4_yvsd3")
+
+[node name="AudioStreamPlayer3" type="AudioStreamPlayer" parent="FootstepAudioPlayer"]
+stream = ExtResource("5_l7snb")
+
+[node name="AudioStreamPlayer4" type="AudioStreamPlayer" parent="FootstepAudioPlayer"]
+stream = ExtResource("6_3pmij")
+
+[node name="AudioStreamPlayer5" type="AudioStreamPlayer" parent="FootstepAudioPlayer"]
+stream = ExtResource("7_06at1")
+
+[node name="AudioStreamPlayer6" type="AudioStreamPlayer" parent="FootstepAudioPlayer"]
+stream = ExtResource("8_l17en")
+
+[node name="AudioStreamPlayer7" type="AudioStreamPlayer" parent="FootstepAudioPlayer"]
+stream = ExtResource("9_vck2h")
+
+[node name="AudioStreamPlayer8" type="AudioStreamPlayer" parent="FootstepAudioPlayer"]
+stream = ExtResource("10_xrqni")
+
+[node name="AudioStreamPlayer9" type="AudioStreamPlayer" parent="FootstepAudioPlayer"]
+stream = ExtResource("11_ugamo")
+
+[node name="AudioStreamPlayer10" type="AudioStreamPlayer" parent="FootstepAudioPlayer"]
+stream = ExtResource("12_3oaps")
 
 [node name="CoyoteTimer" type="Timer" parent="."]
 wait_time = 0.15

@@ -11,6 +11,9 @@ enum State { NORMAL, DASHING, INPUT_DISABLED }
 
 @export_flags_2d_physics var dash_hazard_mask
 
+@onready var footstep_audio_player: RandomAudioStreamPlayer = $FootstepAudioPlayer
+
+
 const GRAVITY: int = 1200
 const HORIZONTAL_SPEED: int = 120
 const HORIZONTAL_ACCELERATION: int = 1400
@@ -155,6 +158,7 @@ func spawn_footstep_particles(f_scale: float = 1.0):
 	get_parent().add_child(footstep_particle)
 	footstep_particle.scale = Vector2.ONE * f_scale
 	footstep_particle.global_position = global_position
+	footstep_audio_player.play()
 
 
 func _on_hazard_area_area_entered(_area: Area2D):

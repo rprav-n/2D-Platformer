@@ -35,7 +35,7 @@ position = Vector2(-325, 18)
 text = "Press SPACE while in air to double jump"
 
 [node name="Flag" parent="." index="9"]
-position = Vector2(340, 108)
+position = Vector2(211, -270)
 
 [node name="Coin" parent="Collectibles" index="0" instance=ExtResource("4_h6psi")]
 position = Vector2(58, 17)
