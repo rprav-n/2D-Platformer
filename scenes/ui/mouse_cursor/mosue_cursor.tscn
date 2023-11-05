@@ -1,0 +1,51 @@
+[gd_scene load_steps=7 format=3 uid="uid://cin5qba7r5wmu"]
+
+[ext_resource type="Texture2D" uid="uid://cv3jc21b7xl4o" path="res://assets/ui/cursor.png" id="1_fpmwy"]
+[ext_resource type="Script" path="res://scenes/ui/mouse_cursor/mosue_cursor.gd" id="1_xvi2f"]
+[ext_resource type="Shader" path="res://scenes/ui/mouse_cursor/mosue_cursor.gdshader" id="2_7to6w"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1uibo"]
+shader = ExtResource("2_7to6w")
+
+[sub_resource type="Animation" id="Animation_y2ibk"]
+resource_name = "click"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:scale")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(1.5, 1.5), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_f5o6b"]
+_data = {
+"click": SubResource("Animation_y2ibk")
+}
+
+[node name="MosueCursor" type="CanvasLayer"]
+process_mode = 3
+layer = 5
+script = ExtResource("1_xvi2f")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(1.2, 1.2)
+texture = ExtResource("1_fpmwy")
+centered = false
+
+[node name="Sprite2D2" type="Sprite2D" parent="Sprite2D"]
+show_behind_parent = true
+material = SubResource("ShaderMaterial_1uibo")
+texture = ExtResource("1_fpmwy")
+centered = false
+offset = Vector2(1, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_f5o6b")
+}
