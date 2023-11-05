@@ -6,6 +6,7 @@ extends Node
 @export var level_comlpete_scene: PackedScene
 
 var player_scene: PackedScene = preload("res://scenes/player/player.tscn")
+var pause_scene: PackedScene = preload("res://scenes/ui/pause_menu/pause_menu.tscn")
 var spawn_position: Vector2 = Vector2.ZERO
 
 @onready var player: Player = $Player
@@ -24,6 +25,12 @@ func _ready():
 	
 	GameEvent.update_coin_count_ui.emit(total_coins, collected_coins)
 	GameEvent.player_coin_collect.connect(_on_player_coin_collect)
+
+
+func _unhandled_input(event: InputEvent):
+	if event.is_action_pressed("pause"):
+		var pause: PauseMenu = pause_scene.instantiate() as PauseMenu
+		add_child(pause)
 
 
 func register_player(player_node: Player):

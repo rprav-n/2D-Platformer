@@ -10,6 +10,7 @@
 
 [node name="MainMenu" type="CanvasLayer"]
 script = ExtResource("1_2ja87")
+background_color = Color(0.533333, 0.713726, 0.866667, 1)
 
 [node name="Node2D" type="Node2D" parent="."]
 

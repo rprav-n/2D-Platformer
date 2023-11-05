@@ -6,6 +6,12 @@ extends Button
 @onready var click_animation_player: AnimationPlayer = $ClickAnimationPlayer
 
 
+func _ready():
+	mouse_entered.connect(_on_mouse_entered)
+	mouse_exited.connect(_on_mouse_exited)
+	pressed.connect(_on_pressed)
+	
+
 func _on_mouse_entered():
 	hover_animation_player.play("hover")
 
