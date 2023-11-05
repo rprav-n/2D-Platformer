@@ -1,0 +1,83 @@
+[gd_scene load_steps=8 format=3 uid="uid://xpk8nlyikjom"]
+
+[ext_resource type="Shader" path="res://scenes/ui/screen_transition/screen_transition.gdshader" id="1_g8g5p"]
+[ext_resource type="Script" path="res://scenes/ui/screen_transition/screen_transition.gd" id="1_xhwwd"]
+[ext_resource type="Texture2D" uid="uid://baatlc2yyvnbp" path="res://assets/effects/screen-wipe.png" id="2_i8yqd"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nawkl"]
+shader = ExtResource("1_g8g5p")
+shader_parameter/percent = 0.0
+shader_parameter/wipeImage = ExtResource("2_i8yqd")
+
+[sub_resource type="Animation" id="Animation_e2gcp"]
+resource_name = "default"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:material:shader_parameter/percent")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [1.0, 0.0, 1.0]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.3, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"emit_screen_covered"
+}, {
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_j7wuv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:material:shader_parameter/percent")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qb4qr"]
+_data = {
+"RESET": SubResource("Animation_j7wuv"),
+"default": SubResource("Animation_e2gcp")
+}
+
+[node name="ScreenTransition" type="CanvasLayer"]
+layer = 2
+script = ExtResource("1_xhwwd")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_nawkl")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "default"
+libraries = {
+"": SubResource("AnimationLibrary_qb4qr")
+}

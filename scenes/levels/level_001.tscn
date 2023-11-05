@@ -18,7 +18,7 @@ layer_0/tile_data = PackedInt32Array(196619, 262144, 6, 196616, 327680, 6, 19661
 layer_0/tile_data = PackedInt32Array(-786459, 1245184, 3, -786460, 1179648, 3, -786461, 1179648, 3, -786462, 1179648, 3, -786463, 1114112, 3, -458768, 1245184, 3, -458769, 1179648, 3, -458770, 1179648, 3, -458771, 1179648, 3, -458772, 1179648, 3, -458773, 1114112, 3, -327707, 1245184, 3, -327708, 1179648, 3, -327709, 1179648, 3, -327710, 1114112, 3)
 
 [node name="Flag" parent="." index="5"]
-position = Vector2(202, -270)
+position = Vector2(299, 90)
 
 [node name="Coin" parent="Collectibles" index="0" instance=ExtResource("4_h6psi")]
 position = Vector2(58, 17)
