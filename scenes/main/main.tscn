@@ -1,7 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://c2g4hjko38r2v"]
+[gd_scene load_steps=3 format=3 uid="uid://c2g4hjko38r2v"]
 
 [ext_resource type="Script" path="res://scenes/main/main.gd" id="1_xbjvy"]
+[ext_resource type="PackedScene" uid="uid://ru3dx0irhi1l" path="res://scenes/ui/main_menu/main_menu.tscn" id="2_6ry36"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_xbjvy")
 background_color = Color(0.87451, 0.964706, 0.960784, 1)
+
+[node name="MainMenu" parent="." instance=ExtResource("2_6ry36")]
