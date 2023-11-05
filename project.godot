@@ -21,6 +21,7 @@ GameEvent="*res://autoloads/game_event.gd"
 LevelManager="*res://scenes/level_manager/level_manager.tscn"
 ScreenTransitionManager="*res://scenes/ui/screen_transition_manager/screen_transition_manager.tscn"
 MosueCursor="*res://scenes/ui/mouse_cursor/mosue_cursor.tscn"
+MusicPlayer="*res://scenes/music_player/music_player.tscn"
 
 [display]
 
