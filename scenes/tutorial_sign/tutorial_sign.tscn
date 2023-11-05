@@ -1,0 +1,51 @@
+[gd_scene load_steps=5 format=3 uid="uid://jkyrs10n5p5a"]
+
+[ext_resource type="Script" path="res://scenes/tutorial_sign/tutorial_sign.gd" id="1_58j0y"]
+[ext_resource type="Texture2D" uid="uid://bq4dl5dgwlfci" path="res://assets/tutorials/tutorials_secondary.png" id="2_5evo5"]
+[ext_resource type="Theme" uid="uid://c2d2vxclxkr4l" path="res://resources/theme.tres" id="2_awxfi"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_loxx0"]
+radius = 20.0
+
+[node name="TutorialSign" type="Node2D"]
+script = ExtResource("1_58j0y")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_5evo5")
+offset = Vector2(0, -10)
+hframes = 2
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(0, -9)
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_loxx0")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+custom_minimum_size = Vector2(100, 0)
+layout_direction = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -50.0
+offset_top = -43.0
+offset_right = 50.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("2_awxfi")
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer"]
+layout_mode = 2
+
+[node name="TutorialText" type="Label" parent="PanelContainer/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+autowrap_mode = 3
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]
